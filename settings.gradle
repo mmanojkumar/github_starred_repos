@@ -2,4 +2,4 @@ include ':Github-Domain'
 include ':Github-Data'
 include ':Github-Presentation'
 include ':app'
-rootProject.name = "Github-Starred-Repos"
+rootProject.name = "github-starred-repos"
