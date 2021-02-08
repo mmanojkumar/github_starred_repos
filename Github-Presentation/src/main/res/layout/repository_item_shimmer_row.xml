@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/CardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item1"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/loading_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item2"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="80dp"
+            android:background="@color/loading_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item3"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="120dp"
+            android:background="@color/loading_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item4"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="160dp"
+            android:background="@color/loading_color" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

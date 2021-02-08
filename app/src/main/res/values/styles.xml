@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <style name="Splash_Title">
+        <item name="android:maxLines">1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">70sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

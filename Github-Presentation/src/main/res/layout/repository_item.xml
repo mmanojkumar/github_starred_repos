@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+
+        <variable
+            name="repositoryModel"
+            type="com.github.presentation.model.RepositoryModel" />
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        style="@style/CardViewStyle"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repositoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/repository_name(repositoryModel.repositoryName)}"
+                android:textSize="@dimen/text_size"
+                android:textColor="@android:color/black"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/user_name(repositoryModel.userName)}"
+                android:textSize="@dimen/text_size"
+                android:textColor="@android:color/black"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/description(repositoryModel.description)}"
+                android:textSize="@dimen/text_size"
+                android:textColor="@android:color/black"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/numberOfStars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/number_of_stars(repositoryModel.numberOfStars)}"
+                android:textSize="@dimen/text_size"
+                android:textColor="@android:color/black"/>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

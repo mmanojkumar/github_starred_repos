@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#181919</color>
+    <color name="colorPrimaryDark">#3F4142</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="loading_color">@color/grey</color>
+
+    <color name="grey">#7B7A7A</color>
+
+    <color name="placeholder_grey">#AAADC4</color>
+    <color name="placeholder_grey_20">#33AAADC4</color>
+
+
+</resources>
