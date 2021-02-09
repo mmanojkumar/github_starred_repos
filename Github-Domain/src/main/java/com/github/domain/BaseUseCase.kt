@@ -2,7 +2,6 @@ package com.github.domain
 
 import com.github.domain.executor.PostExecutionThread
 import com.github.domain.executor.ThreadExecutor
-import com.github.domain.interactor.DefaultObserver
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -1,17 +1,13 @@
 package com.github.presentation.adapter
 
-import android.graphics.Movie
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.github.presentation.adapter.RepositoryListAdapter.ViewType.ITEM
 import com.github.presentation.adapter.RepositoryListAdapter.ViewType.LOADING
+import com.github.presentation.com.github.presentation.model.PaginationError
 import com.github.presentation.model.RepositoryModel
-import com.repository.presentation.R
 import com.repository.presentation.databinding.LoadingItemBinding
-import com.repository.presentation.databinding.LoadingItemBindingImpl
 import com.repository.presentation.databinding.RepositoryItemBinding
 
 
@@ -19,13 +15,14 @@ class RepositoryListAdapter(var repositories: MutableList<RepositoryModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isLoadingAdded = false
+    private val paginationError = PaginationError(false, "")
 
     var onItemClickListener: OnItemClickListener? = null
 
     class RepositoryItemViewHolder(val repositoryItemBinding: RepositoryItemBinding) :
         RecyclerView.ViewHolder(repositoryItemBinding.root)
 
-    class LoadingItemViewHolder(loadingItemBinding: LoadingItemBinding) :
+    class LoadingItemViewHolder(val loadingItemBinding: LoadingItemBinding) :
         RecyclerView.ViewHolder(loadingItemBinding.root)
 
 
@@ -70,7 +67,9 @@ class RepositoryListAdapter(var repositories: MutableList<RepositoryModel>) :
             }
 
             LOADING ->{
-                //Do Nothing
+                val loadingItemBinding = (holder as LoadingItemViewHolder).loadingItemBinding
+                loadingItemBinding.paginationError = paginationError
+                loadingItemBinding.loadMoreErrorLayout.setOnClickListener { onItemClickListener?.onRetryClick() }
             }
         }
 
@@ -82,6 +81,7 @@ class RepositoryListAdapter(var repositories: MutableList<RepositoryModel>) :
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+        fun onRetryClick()
     }
 
     object ViewType {
@@ -107,4 +107,14 @@ class RepositoryListAdapter(var repositories: MutableList<RepositoryModel>) :
     }
 
 
+    fun showRetry(errorMessage:String) {
+        paginationError.isError = true
+        paginationError.errorMessage = errorMessage
+        notifyItemChanged(repositories.size - 1)
+    }
+
+    fun hideRetryError() {
+        paginationError.isError = false
+        notifyItemChanged(repositories.size - 1)
+    }
 }

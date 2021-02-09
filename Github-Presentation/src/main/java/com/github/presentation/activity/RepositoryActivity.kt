@@ -2,9 +2,9 @@ package com.github.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.repository.presentation.R
 import com.github.presentation.fragment.FragmentUtil
 import com.github.presentation.fragment.RepositoryListFragment
+import com.repository.presentation.R
 
 class RepositoryActivity : AppCompatActivity() {
 

@@ -2,10 +2,11 @@ package com.github.presentation.di.module
 
 import android.content.Context
 import com.bumptech.glide.BuildConfig
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.github.data.api.APIConstants.GITHUB_URL
 import com.github.data.network.RestClient
 import com.github.data.network.interceptor.FailureResponseInterceptor
 import com.github.data.network.interceptor.InternetConnectionInterceptor
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
 
     @Provides
     fun retrofit(okHttpClient: OkHttpClient, url: String): Retrofit {
@@ -54,7 +56,7 @@ class NetworkModule {
 
     @Provides
     fun url(): String {
-        return "https://api.github.com"
+        return GITHUB_URL
     }
 
 

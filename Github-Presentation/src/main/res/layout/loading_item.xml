@@ -2,18 +2,30 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="paginationError"
+            type="com.github.presentation.com.github.presentation.model.PaginationError" />
+
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:background="#fafafa">
+        tools:background="@android:color/white">
 
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/footer_loading"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="@{paginationError.error ? View.GONE : View.VISIBLE}"
+            >
 
             <include layout="@layout/repository_item_shimmer_row" />
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -29,8 +41,8 @@
             android:orientation="horizontal"
             android:paddingTop="@dimen/activity_margin"
             android:paddingBottom="@dimen/activity_margin"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:visibility="@{paginationError.error ? View.VISIBLE:View.GONE}"
+            >
 
             <ImageButton
                 android:id="@+id/loadmore_retry"
@@ -58,7 +70,7 @@
                     style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="What went wrong" />
+                    android:text="@{paginationError.errorMessage}" />
 
                 <TextView
                     style="@style/Base.TextAppearance.AppCompat.Caption"

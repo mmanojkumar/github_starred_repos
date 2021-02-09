@@ -3,7 +3,6 @@ package com.github.data.mapper
 import com.github.data.entity.GitHubResponse
 
 import com.github.domain.model.Repository
-import com.github.data.entity.RepositoryEntity
 import com.github.domain.model.StarredRepository
 
 object GitHubEntityDataMapper {

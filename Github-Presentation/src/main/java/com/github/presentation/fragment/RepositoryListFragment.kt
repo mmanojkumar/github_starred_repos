@@ -26,10 +26,10 @@ class RepositoryListFragment : BaseFragment() {
 
     @Inject
     lateinit var repositoryListViewModel: RepositoryListViewModel
-
     private lateinit var repositoryListFragmentBinding: RepositoryListFragmentBinding
+    private val repositoryListAdapter = RepositoryListAdapter(mutableListOf())
+    private var pagination = Pagination(resultPerPage = 30)
 
-    var pagination = Pagination()
 
 
     override fun onCreateView(
@@ -66,30 +66,15 @@ class RepositoryListFragment : BaseFragment() {
         val linearLayoutManager = LinearLayoutManager(context)
         repositoryListFragmentBinding.repositoryRecyclerView.layoutManager =
             linearLayoutManager
-
-        val repositoryListAdapter = RepositoryListAdapter(mutableListOf())
-        repositoryListAdapter.onItemClickListener =
-            object : RepositoryListAdapter.OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    //Do nothing for now
-                }
-            }
         repositoryListFragmentBinding.repositoryRecyclerView.adapter = repositoryListAdapter
-        repositoryListFragmentBinding.repositoryRecyclerView.addOnScrollListener(object :
-            PaginationScrollListener(linearLayoutManager) {
-            override fun    loadMoreItems() {
-                pagination.isLoading = true
-                pagination.currentPageNumber += 1
-                repositoryListViewModel.getMostStarredRepositories(pagination.currentPageNumber)
-            }
+        repositoryListFragmentBinding.repositoryRecyclerView.addOnScrollListener(getPageScrollListener(linearLayoutManager))
 
-            override val totalPageCount: Int
-                get() = pagination.totalPageCount()
-            override val isLastPage: Boolean
-                get() = pagination.isLastPage()
-            override val isLoading: Boolean
-                get() = pagination.isLoading
-        })
+        repositoryListAdapter.onItemClickListener = onItemClickListener()
+
+        repositoryListFragmentBinding.retry.setOnClickListener {
+            pagination.currentPageNumber += 1
+            repositoryListViewModel.getMostStarredRepositories(pagination.currentPageNumber)
+        }
 
     }
 
@@ -107,23 +92,14 @@ class RepositoryListFragment : BaseFragment() {
         })
 
         repositoryListViewModel.failure.observe(this, Observer {
-            when (it) {
-                is NoInternetException -> {
-                    showErrorMessage(getString(R.string.no_internet_connection))
-                }
-                is ApiException -> {
-                    showErrorMessage(it.message)
-                }
-                else -> {
-                    showErrorMessage(getString(R.string.generic_error_message))
-                }
-            }
+            pagination.currentPageNumber -= 1
+            handleFailure(it)
         })
 
         repositoryListViewModel.loading.observe(this, Observer {
             if (it) {
-                hideErrorMessage()
-                hideRepositories()
+                hideRetryComponent()
+                hideRepositoriesComponent()
                 showShimmer()
             } else {
                 hideShimmer()
@@ -131,9 +107,26 @@ class RepositoryListFragment : BaseFragment() {
         })
     }
 
+    private fun handleFailure(it: Throwable) {
+        val errorMessage = when (it) {
+            is NoInternetException -> {
+                getString(R.string.no_internet_connection)
+            }
+            is ApiException -> {
+                it.message
+            }
+            else -> {
+                getString(R.string.generic_error_message)
+            }
+        }
+        if (pagination.currentPageNumber >= 1) {
+            repositoryListAdapter.showRetry(errorMessage)
+        } else {
+            showErrorMessage(errorMessage)
+        }
+    }
+
     private fun setLoadingFooterVisibility() {
-        val repositoryListAdapter: RepositoryListAdapter =
-            repositoryListFragmentBinding.repositoryRecyclerView.adapter as RepositoryListAdapter
         if (pagination.isLastPage()) {
             repositoryListAdapter.removeLoadingFooter()
         } else {
@@ -161,23 +154,53 @@ class RepositoryListFragment : BaseFragment() {
         repositoryListFragmentBinding.retry.visibility = View.VISIBLE
     }
 
-    private fun hideErrorMessage() {
+    private fun hideRetryComponent() {
         repositoryListFragmentBinding.errorMessage.visibility = View.GONE
         repositoryListFragmentBinding.retry.visibility = View.GONE
     }
 
-    private fun hideRepositories() {
+    private fun hideRepositoriesComponent() {
         repositoryListFragmentBinding.repositoryRecyclerView.visibility = View.GONE
     }
 
 
     private fun showRepositories(it: List<RepositoryModel>) {
-        val repositoryListAdapter: RepositoryListAdapter =
-            repositoryListFragmentBinding.repositoryRecyclerView.adapter as RepositoryListAdapter
+        repositoryListAdapter.hideRetryError()
         repositoryListAdapter.repositories.addAll(it)
         repositoryListAdapter.notifyDataSetChanged()
         repositoryListFragmentBinding.repositoryRecyclerView.visibility = View.VISIBLE
     }
 
+
+    private fun getPageScrollListener(linearLayoutManager:LinearLayoutManager): PaginationScrollListener{
+        return object :
+            PaginationScrollListener(linearLayoutManager) {
+            override fun  loadMoreItems() {
+                pagination.isLoading = true
+                pagination.currentPageNumber += 1
+                repositoryListViewModel.getMostStarredRepositories(pagination.currentPageNumber)
+            }
+
+            override val totalPageCount: Int
+                get() = pagination.totalPageCount()
+            override val isLastPage: Boolean
+                get() = pagination.isLastPage()
+            override val isLoading: Boolean
+                get() = pagination.isLoading
+        }
+    }
+
+    private fun onItemClickListener(): RepositoryListAdapter.OnItemClickListener {
+        return object : RepositoryListAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                //Do nothing for now
+            }
+
+            override fun onRetryClick() {
+                pagination.currentPageNumber += 1
+                repositoryListViewModel.getMostStarredRepositories(pagination.currentPageNumber)
+            }
+        }
+    }
 
 }

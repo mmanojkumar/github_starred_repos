@@ -1,7 +1,7 @@
 package  com.github.data.network.interceptor
 
-import com.google.gson.Gson
 import com.github.data.exception.ApiException
+import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Response
 

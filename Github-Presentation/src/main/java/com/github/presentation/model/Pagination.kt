@@ -1,9 +1,7 @@
 package com.github.presentation.model
 
-import com.github.data.DataConstants
-
 class Pagination(var totalCount: Int = 0,
-                 var resultPerPage: Int = DataConstants.RESULT_PER_PAGE,
+                 var resultPerPage: Int = 10,
                  var currentPageNumber: Int = 1,
                  var isLoading: Boolean = false){
 
