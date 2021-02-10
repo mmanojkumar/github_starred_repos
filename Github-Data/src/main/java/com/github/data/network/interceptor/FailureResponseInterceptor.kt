@@ -7,14 +7,17 @@ import okhttp3.Response
 
 
 class FailureResponseInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain?): Response {
-        val request = chain!!.request()
+
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
         val response = chain.proceed(request)
-        if (response.code() != 200) {
-            throw Gson().fromJson<ApiException>(response.body().string(), ApiException::class.java)
+        if (response.code != 200) {
+            throw Gson().fromJson<ApiException>(response.body?.string(), ApiException::class.java)
         }
         return response
     }
+
+
 
 
 }

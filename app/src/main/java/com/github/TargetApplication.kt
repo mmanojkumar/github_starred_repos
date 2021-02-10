@@ -1,10 +1,10 @@
 package com.github
 
+import com.github.data.network.NetworkModule
 import com.github.presentation.AndroidApplication
 import com.github.presentation.di.component.ApplicationComponent
 import com.github.presentation.di.component.DaggerApplicationComponent
 import com.github.presentation.di.module.ApplicationModule
-import com.github.presentation.di.module.NetworkModule
 
 
 class TargetApplication : AndroidApplication() {

@@ -1,4 +1,4 @@
-package com.github.presentation
+package com.github.presentation.com.github.presentation.listener
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

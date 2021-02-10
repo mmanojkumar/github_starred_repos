@@ -1,8 +1,8 @@
-package com.github.presentation.fragment
+package com.github.presentation.com.github.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.domain.interactor.DefaultObserver
+import com.github.domain.DefaultObserver
 import com.github.domain.interactor.GetMostStarredRepositoryUseCase
 import com.github.domain.model.StarredRepository
 import com.github.presentation.mapper.GithubModelMapper

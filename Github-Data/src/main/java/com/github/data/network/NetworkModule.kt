@@ -1,9 +1,8 @@
-package com.github.presentation.di.module
+package com.github.data.network
 
 import android.content.Context
-import com.bumptech.glide.BuildConfig
+import com.github.data.BuildConfig
 import com.github.data.api.APIConstants.GITHUB_URL
-import com.github.data.network.RestClient
 import com.github.data.network.interceptor.FailureResponseInterceptor
 import com.github.data.network.interceptor.InternetConnectionInterceptor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -21,6 +20,7 @@ class NetworkModule {
 
 
     @Provides
+    @Singleton
     fun retrofit(okHttpClient: OkHttpClient, url: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(url)
@@ -39,6 +39,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun okHttpClient(context: Context): OkHttpClient {
         val builder = OkHttpClient.Builder()
 

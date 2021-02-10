@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.data.exception.ApiException
 import com.github.data.exception.NoInternetException
 import com.github.presentation.AndroidApplication
-import com.github.presentation.PaginationScrollListener
 import com.github.presentation.adapter.RepositoryListAdapter
+import com.github.presentation.com.github.presentation.listener.PaginationScrollListener
+import com.github.presentation.com.github.presentation.viewmodel.RepositoryListViewModel
 import com.github.presentation.di.component.DaggerGithubComponent
 import com.github.presentation.di.module.ActivityModule
 import com.github.presentation.model.Pagination
@@ -172,7 +173,7 @@ class RepositoryListFragment : BaseFragment() {
     }
 
 
-    private fun getPageScrollListener(linearLayoutManager:LinearLayoutManager): PaginationScrollListener{
+    private fun getPageScrollListener(linearLayoutManager:LinearLayoutManager): PaginationScrollListener {
         return object :
             PaginationScrollListener(linearLayoutManager) {
             override fun  loadMoreItems() {

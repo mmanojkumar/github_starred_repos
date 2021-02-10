@@ -6,7 +6,7 @@ import com.github.presentation.fragment.FragmentUtil
 import com.github.presentation.fragment.RepositoryListFragment
 import com.repository.presentation.R
 
-class RepositoryActivity : AppCompatActivity() {
+class RepositoryListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

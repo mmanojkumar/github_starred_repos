@@ -7,7 +7,7 @@
 
         <variable
             name="repositoryListViewModel"
-            type="com.github.presentation.fragment.RepositoryListViewModel" />
+            type="com.github.presentation.com.github.presentation.viewmodel.RepositoryListViewModel" />
 
         <variable
             name="pagination"

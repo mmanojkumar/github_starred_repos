@@ -19,10 +19,10 @@ class RepositoryListAdapter(var repositories: MutableList<RepositoryModel>) :
 
     var onItemClickListener: OnItemClickListener? = null
 
-    class RepositoryItemViewHolder(val repositoryItemBinding: RepositoryItemBinding) :
+    private class RepositoryItemViewHolder(val repositoryItemBinding: RepositoryItemBinding) :
         RecyclerView.ViewHolder(repositoryItemBinding.root)
 
-    class LoadingItemViewHolder(val loadingItemBinding: LoadingItemBinding) :
+    private class LoadingItemViewHolder(val loadingItemBinding: LoadingItemBinding) :
         RecyclerView.ViewHolder(loadingItemBinding.root)
 
 

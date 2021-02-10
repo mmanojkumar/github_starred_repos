@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.github.presentation.activity.RepositoryActivity
+import com.github.presentation.activity.RepositoryListActivity
 
 
 class SplashActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
                 AnimationUtils.loadAnimation(applicationContext, R.anim.zoom)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, RepositoryActivity::class.java))
+            startActivity(Intent(this, RepositoryListActivity::class.java))
             finish()
         }, SPLASH_TIME_OUT)
 

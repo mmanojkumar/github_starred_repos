@@ -2,11 +2,11 @@ package com.github.presentation.di.component
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
+import com.github.data.network.NetworkModule
 import com.github.domain.executor.PostExecutionThread
 import com.github.domain.executor.ThreadExecutor
 import com.github.domain.repository.GitHubRepository
 import com.github.presentation.di.module.ApplicationModule
-import com.github.presentation.di.module.NetworkModule
 import dagger.Component
 import javax.inject.Singleton
 

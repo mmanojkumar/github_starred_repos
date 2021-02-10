@@ -2,11 +2,11 @@ package com.github.presentation.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.github.presentation.com.github.presentation.viewmodel.RepositoryListViewModel
 
 
 import com.github.presentation.di.factory.ViewModelFactory
 import com.github.presentation.di.factory.ViewModelKey
-import com.github.presentation.fragment.RepositoryListViewModel
 
 import dagger.Binds
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.github.domain.interactor;
+package com.github.domain;
 
 import io.reactivex.observers.DisposableObserver;
 

@@ -4,7 +4,7 @@
 
     <application >
         <activity
-            android:name="com.github.presentation.activity.RepositoryActivity"
+            android:name="com.github.presentation.activity.RepositoryListActivity"
             android:theme="@style/Theme.AppCompat.Light"
 
             />
