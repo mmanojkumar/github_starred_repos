@@ -53,9 +53,8 @@ class GitHubDataRepositoryTest : TestCase() {
         })
 
         countDownLatch.await(3000, TimeUnit.MILLISECONDS)
-        if(exception != null) {
-            Assert.fail(exception?.message)
-        }
+        Assert.assertTrue(exception != null )
+
     }
 
     @Test
