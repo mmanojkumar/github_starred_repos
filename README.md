@@ -3,7 +3,7 @@
 GitHub-Starred-Repositories will fetch most recent starred repositories from github
 
 ## Architecture Used
-`Clean Architecture` - https://github.com/android10/Android-CleanArchitecture/blob/master/README.md
+Clean Architecture - https://github.com/android10/Android-CleanArchitecture/blob/master/README.md
 
 
 ## Libraries Used
@@ -20,9 +20,7 @@ Clone this repository and import into **Android Studio**
 git clone https://github.com/mmanojkumar/github_starred_repos
 ```
 
-
-## Configuration
-### Keystores:
+### Keystores
 Refer `app/gradle.properties` for release build
 ```gradle
 RELEASE_STORE_FILE=./../***FileLocation***
@@ -38,14 +36,14 @@ RELEASE_KEY_PASSWORD=***Password***
 Use the Android Studio *Build Variants* button to choose between **debug** and **release**  build types
 
 
-### Generating signed APK
-From Android Studio:
+### Generate signed APK
+#### From Android Studio
 1. ***Build*** menu
 2. ***Generate Signed APK...***
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
 
-From Terminal:
+#### From Terminal
 1. Go to project root folder
 2. Run ***./gradle assembleDebug*** to generate debug apk file
 2. Run ***./gradle assembleRelease*** to generate release apk file
