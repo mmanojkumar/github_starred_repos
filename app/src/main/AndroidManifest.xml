@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:largeHeap="true"
-        android:name="com.github.TargetApplication"
+        android:name="com.github.GithubApplication"
         >
         <activity
             android:name=".SplashActivity"

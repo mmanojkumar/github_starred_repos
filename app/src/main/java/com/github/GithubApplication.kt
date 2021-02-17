@@ -7,7 +7,7 @@ import com.github.presentation.di.component.DaggerApplicationComponent
 import com.github.presentation.di.module.ApplicationModule
 
 
-class TargetApplication : AndroidApplication() {
+class GithubApplication : AndroidApplication() {
 
     override lateinit var applicationComponent: ApplicationComponent
 
